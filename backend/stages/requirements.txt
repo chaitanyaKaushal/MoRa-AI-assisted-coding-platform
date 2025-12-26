@@ -1,0 +1,12 @@
+docker
+python-multipart
+pandas
+tqdm
+tiktoken
+fastapi
+uvicorn[standard]
+sqlalchemy
+openai
+pydantic
+python-dotenv
+psycopg2-binary

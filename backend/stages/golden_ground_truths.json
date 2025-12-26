@@ -1,0 +1,757 @@
+{
+  "metadata": {
+    "count": 54,
+    "format_version": "1.0"
+  },
+  "ground_truths": [
+    {
+      "task_id": "recover-binary-search-tree",
+      "problem_description": "You are given the root of a binary search tree (BST), where the values of exactly two nodes of the tree were swapped by mistake. Recover the tree without changing its structure.",
+      "examples": [
+        "Input: root = [1,3,null,null,2]\nOutput: [3,1,null,null,2]",
+        "Input: root = [3,1,4,null,null,2]\nOutput: [2,1,4,null,null,3]"
+      ],
+      "constraints": [
+        "The number of nodes in the tree is in the range [2, 1000].",
+        "-231 <= Node.val <= 231 - 1"
+      ]
+    },
+    {
+      "task_id": "continuous-subarrays",
+      "problem_description": "You are given a 0-indexed integer array nums. A subarray of nums is called continuous if: Let i, i + 1, ..., j be the indices in the subarray. Then, for each pair of indices i <= i1, i2 <= j, 0 <= |nums[i1] - nums[i2]| <= 2. Return the total number of continuous subarrays. A subarray is a contiguous non-empty sequence of elements within an array.",
+      "examples": [
+        "Input: nums = [5,4,2,4]\nOutput: 8\n",
+        "Input: nums = [1,2,3]\nOutput: 6\n"
+      ],
+      "constraints": [
+        "1 <= nums.length <= 105",
+        "1 <= nums[i] <= 109"
+      ]
+    },
+    {
+      "task_id": "count-number-of-possible-root-nodes",
+      "problem_description": "Alice has an undirected tree with n nodes labeled from 0 to n - 1. The tree is represented as a 2D integer array edges of length n - 1 where edges[i] = [ai, bi] indicates that there is an edge between nodes ai and bi in the tree. Alice wants Bob to find the root of the tree. She allows Bob to make several guesses about her tree. In one guess, he does the following: Chooses two distinct integers u and v such that there exists an edge [u, v] in the tree. He tells Alice that u is the parent of v in the tree. Bob's guesses are represented by a 2D integer array guesses where guesses[j] = [uj, vj] indicates Bob guessed uj to be the parent of vj. Alice being lazy, does not reply to each of Bob's guesses, but just says that at least k of his guesses are true. Given the 2D integer arrays edges, guesses and the integer k, return the number of possible nodes that can be the root of Alice's tree. If there is no such tree, return 0.",
+      "examples": [
+        "Input: edges = [[0,1],[1,2],[1,3],[4,2]], guesses = [[1,3],[0,1],[1,0],[2,4]], k = 3\nOutput: 3",
+        "Input: edges = [[0,1],[1,2],[2,3],[3,4]], guesses = [[1,0],[3,4],[2,1],[3,2]], k = 1\nOutput: 5"
+      ],
+      "constraints": [
+        "edges.length == n - 1",
+        "2 <= n <= 105",
+        "1 <= guesses.length <= 105",
+        "0 <= ai, bi, uj, vj <= n - 1",
+        "ai != bi",
+        "uj != vj",
+        "edges represents a valid tree.",
+        "guesses[j] is an edge of the tree.",
+        "guesses is unique.",
+        "0 <= k <= guesses.length"
+      ]
+    },
+    {
+      "task_id": "shortest-way-to-form-string",
+      "problem_description": "A subsequence of a string is a new string that is formed from the original string by deleting some (can be none) of the characters without disturbing the relative positions of the remaining characters. Given two strings source and target, return the minimum number of subsequences of source such that their concatenation equals target. If the task is impossible, return -1.",
+      "examples": [
+        "Input: source = \"abc\", target = \"abcbc\"\nOutput: 2",
+        "Input: source = \"abc\", target = \"acdbc\"\nOutput: -1",
+        "Input: source = \"xyz\", target = \"xzyxz\"\nOutput: 3"
+      ],
+      "constraints": [
+        "1 <= source.length, target.length <= 1000",
+        "source and target consist of lowercase English letters."
+      ]
+    },
+    {
+      "task_id": "probability-of-a-two-boxes-having-the-same-number-of-distinct-balls",
+      "problem_description": "Given 2n balls of k distinct colors. You will be given an integer array balls of size k where balls[i] is the number of balls of color i. All the balls will be shuffled uniformly at random, then we will distribute the first n balls to the first box and the remaining n balls to the other box. Please note that the two boxes are considered different. Return the probability that the two boxes have the same number of distinct balls.",
+      "examples": [
+        "Input: balls = [1,1]\nOutput: 1.00000",
+        "Input: balls = [2,1,1]\nOutput: 0.66667",
+        "Input: balls = [1,2,1,2]\nOutput: 0.60000"
+      ],
+      "constraints": [
+        "1 <= balls.length <= 8",
+        "1 <= balls[i] <= 6",
+        "sum(balls) is even."
+      ]
+    },
+    {
+      "task_id": "task-scheduler",
+      "problem_description": "You are given an array of CPU tasks, each labeled with a letter from A to Z, and a number n. Each CPU interval can be idle or allow the completion of one task. Tasks can be completed in any order, but there's a constraint: there has to be a gap of at least n intervals between two tasks with the same label. Return the minimum number of CPU intervals required to complete all tasks.",
+      "examples": [
+        "Input: tasks = [\"A\",\"A\",\"A\",\"B\",\"B\",\"B\"], n = 2\nOutput: 8",
+        "Input: tasks = [\"A\",\"C\",\"A\",\"B\",\"D\",\"B\"], n = 1\nOutput: 6",
+        "Input: tasks = [\"A\",\"A\",\"A\", \"B\",\"B\",\"B\"], n = 3\nOutput: 10"
+      ],
+      "constraints": [
+        "1 <= tasks.length <= 104",
+        "tasks[i] is an uppercase English letter.",
+        "0 <= n <= 100"
+      ]
+    },
+    {
+      "task_id": "maximum-product-of-the-length-of-two-palindromic-subsequences",
+      "problem_description": "Given a string s, find two disjoint palindromic subsequences of s such that the product of their lengths is maximized. The two subsequences are disjoint if they do not both pick a character at the same index. Return the maximum possible product of the lengths of the two palindromic subsequences. A subsequence is a string that can be derived from another string by deleting some or no characters without changing the order of the remaining characters. A string is palindromic if it reads the same forward and backward.",
+      "examples": [
+        "Input: s = \"leetcodecom\"\nOutput: 9\nExplanation: An optimal solution is to choose \"ete\" for the 1st subsequence and \"cdc\" for the 2nd subsequence.\nThe product of their lengths is: 3 * 3 = 9.",
+        "Input: s = \"bb\"\nOutput: 1\nExplanation: An optimal solution is to choose \"b\" (the first character) for the 1st subsequence and \"b\" (the second character) for the 2nd subsequence.\nThe product of their lengths is: 1 * 1 = 1.",
+        "Input: s = \"accbcaxxcxx\"\nOutput: 25\nExplanation: An optimal solution is to choose \"accca\" for the 1st subsequence and \"xxcxx\" for the 2nd subsequence.\nThe product of their lengths is: 5 * 5 = 25."
+      ],
+      "constraints": [
+        "2 <= s.length <= 12",
+        "s consists of lowercase English letters only."
+      ]
+    },
+    {
+      "task_id": "repeated-dna-sequences",
+      "problem_description": "Given a string s that represents a DNA sequence, return all the 10-letter-long sequences (substrings) that occur more than once in a DNA molecule.",
+      "examples": [
+        "Input: s = \"AAAAACCCCCAAAAACCCCCCAAAAAGGGTTT\"\nOutput: [\"AAAAACCCCC\",\"CCCCCAAAAA\"]",
+        "Input: s = \"AAAAAAAAAAAAA\"\nOutput: [\"AAAAAAAAAA\"]"
+      ],
+      "constraints": [
+        "1 <= s.length <= 105",
+        "s[i] is either 'A', 'C', 'G', or 'T'."
+      ]
+    },
+    {
+      "task_id": "minimum-deletions-to-make-array-divisible",
+      "problem_description": "You are given two positive integer arrays nums and numsDivide. You can delete any number of elements from nums. Return the minimum number of deletions such that the smallest element in nums divides all the elements of numsDivide. If this is not possible, return -1. Note that an integer x divides y if y % x == 0.",
+      "examples": [
+        "Input: nums = [2,3,2,4,3], numsDivide = [9,6,9,3,15]\nOutput: 2",
+        "Input: nums = [4,3,6], numsDivide = [8,2,6,10]\nOutput: -1"
+      ],
+      "constraints": [
+        "1 <= nums.length, numsDivide.length <= 105",
+        "1 <= nums[i], numsDivide[i] <= 109"
+      ]
+    },
+    {
+      "task_id": "crawler-log-folder",
+      "problem_description": "The Leetcode file system keeps a log each time some user performs a change folder operation. The operations are described below: \"../\" : Move to the parent folder of the current folder. (If you are already in the main folder, remain in the same folder). \"./\" : Remain in the same folder. \"x/\" : Move to the child folder named x (This folder is guaranteed to always exist). You are given a list of strings logs where logs[i] is the operation performed by the user at the ith step. The file system starts in the main folder, then the operations in logs are performed. Return the minimum number of operations needed to go back to the main folder after the change folder operations.",
+      "examples": [
+        "Input: logs = [\"d1/\",\"d2/\",\"../\",\"d21/\",\"./\"]\nOutput: 2\nExplanation: Use this change folder operation \"../\" 2 times and go back to the main folder.",
+        "Input: logs = [\"d1/\",\"d2/\",\"./\",\"d3/\",\"../\",\"d31/\"]\nOutput: 3",
+        "Input: logs = [\"d1/\",\"../\",\"../\",\"../\"]\nOutput: 0"
+      ],
+      "constraints": [
+        "1 <= logs.length <= 103",
+        "2 <= logs[i].length <= 10",
+        "logs[i] contains lowercase English letters, digits, '.', and '/'.",
+        "logs[i] follows the format described in the statement.",
+        "Folder names consist of lowercase English letters and digits."
+      ]
+    },
+    {
+      "task_id": "choose-edges-to-maximize-score-in-a-tree",
+      "problem_description": "You are given a weighted tree consisting of n nodes numbered from 0 to n - 1. The tree is rooted at node 0 and represented with a 2D array edges of size n where edges[i] = [pari, weighti] indicates that node pari is the parent of node i, and the edge between them has a weight equal to weighti. Since the root does not have a parent, you have edges[0] = [-1, -1]. Choose some edges from the tree such that no two chosen edges are adjacent and the sum of the weights of the chosen edges is maximized. Return the maximum sum of the chosen edges. You are allowed to not choose any edges in the tree, the sum of weights in this case will be 0. Two edges Edge1 and Edge2 in the tree are adjacent if they have a common node.",
+      "examples": [
+        "Input: edges = [[-1,-1],[0,5],[0,10],[2,6],[2,4]]\nOutput: 11",
+        "Input: edges = [[-1,-1],[0,5],[0,-6],[0,7]]\nOutput: 7"
+      ],
+      "constraints": [
+        "n == edges.length",
+        "1 <= n <= 105",
+        "edges[i].length == 2",
+        "par0 == weight0 == -1",
+        "0 <= pari <= n - 1 for all i >= 1.",
+        "pari != i",
+        "-106 <= weighti <= 106 for all i >= 1.",
+        "edges represents a valid tree."
+      ]
+    },
+    {
+      "task_id": "maximum-deletions-on-a-string",
+      "problem_description": "You are given a string s consisting of only lowercase English letters. In one operation, you can delete the entire string s, or delete the first i letters of s if the first i letters of s are equal to the following i letters in s, for any i in the range 1 <= i <= s.length / 2. Return the maximum number of operations needed to delete all of s.",
+      "examples": [
+        "Input: s = \"abcabcdabc\"\nOutput: 2\nExplanation:\n- Delete the first 3 letters (\"abc\") since the next 3 letters are equal. Now, s = \"abcdabc\".\n- Delete all the letters.\nWe used 2 operations so return 2. It can be proven that 2 is the maximum number of operations needed.\nNote that in the second operation we cannot delete \"abc\" again because the next occurrence of \"abc\" does not happen in the next 3 letters.",
+        "Input: s = \"aaabaab\"\nOutput: 4\nExplanation:\n- Delete the first letter (\"a\") since the next letter is equal. Now, s = \"aabaab\".\n- Delete the first 3 letters (\"aab\") since the next 3 letters are equal. Now, s = \"aab\".\n- Delete the first letter (\"a\") since the next letter is equal. Now, s = \"ab\".\n- Delete all the letters.\nWe used 4 operations so return 4. It can be proven that 4 is the maximum number of operations needed.",
+        "Input: s = \"aaaaa\"\nOutput: 5\nExplanation: In each operation, we can delete the first letter of s."
+      ],
+      "constraints": [
+        "1 <= s.length <= 4000",
+        "s consists only of lowercase English letters."
+      ]
+    },
+    {
+      "task_id": "find-the-city-with-the-smallest-number-of-neighbors-at-a-threshold-distance",
+      "problem_description": "There are n cities numbered from 0 to n-1. Given the array edges where edges[i] = [fromi, toi, weighti] represents a bidirectional and weighted edge between cities fromi and toi, and given the integer distanceThreshold. Return the city with the smallest number of cities that are reachable through some path and whose distance is at most distanceThreshold. If there are multiple such cities, return the city with the greatest number. Notice that the distance of a path connecting cities i and j is equal to the sum of the edges' weights along that path.",
+      "examples": [
+        "Input: n = 4, edges = [[0,1,3],[1,2,1],[1,3,4],[2,3,1]], distanceThreshold = 4\nOutput: 3",
+        "Input: n = 5, edges = [[0,1,2],[0,4,8],[1,2,3],[1,4,2],[2,3,1],[3,4,1]], distanceThreshold = 2\nOutput: 0"
+      ],
+      "constraints": [
+        "2 <= n <= 100",
+        "1 <= edges.length <= n * (n - 1) / 2",
+        "edges[i].length == 3",
+        "0 <= fromi < toi < n",
+        "1 <= weighti, distanceThreshold <= 10^4",
+        "All pairs (fromi, toi) are distinct."
+      ]
+    },
+    {
+      "task_id": "total-appeal-of-a-string",
+      "problem_description": "The appeal of a string is the number of distinct characters found in the string. Given a string s, return the total appeal of all of its substrings. A substring is a contiguous sequence of characters within a string.",
+      "examples": [
+        "Input: s = \"abbca\"\nOutput: 28",
+        "Input: s = \"code\"\nOutput: 20"
+      ],
+      "constraints": [
+        "1 <= s.length <= 105",
+        "s consists of lowercase English letters."
+      ]
+    },
+    {
+      "task_id": "minimum-number-of-k-consecutive-bit-flips",
+      "problem_description": "You are given a binary array nums and an integer k. A k-bit flip is choosing a subarray of length k from nums and simultaneously changing every 0 in the subarray to 1, and every 1 in the subarray to 0. Return the minimum number of k-bit flips required so that there is no 0 in the array. If it is not possible, return -1. A subarray is a contiguous part of an array.",
+      "examples": [
+        "Input: nums = [0,1,0], k = 1\nOutput: 2",
+        "Input: nums = [1,1,0], k = 2\nOutput: -1",
+        "Input: nums = [0,0,0,1,0,1,1,0], k = 3\nOutput: 3"
+      ],
+      "constraints": [
+        "1 <= nums.length <= 105",
+        "1 <= k <= nums.length"
+      ]
+    },
+    {
+      "task_id": "bitwise-xor-of-all-pairings",
+      "problem_description": "You are given two 0-indexed arrays, nums1 and nums2, consisting of non-negative integers. Let there be another array, nums3, which contains the bitwise XOR of all pairings of integers between nums1 and nums2 (every integer in nums1 is paired with every integer in nums2 exactly once). Return the bitwise XOR of all integers in nums3.",
+      "examples": [
+        "Input: nums1 = [2,1,3], nums2 = [10,2,5,0]\nOutput: 13",
+        "Input: nums1 = [1,2], nums2 = [3,4]\nOutput: 0"
+      ],
+      "constraints": [
+        "1 <= nums1.length, nums2.length <= 105",
+        "0 <= nums1[i], nums2[j] <= 109"
+      ]
+    },
+    {
+      "task_id": "linked-list-in-binary-tree",
+      "problem_description": "Given a binary tree root and a linked list with head as the first node. Return True if all the elements in the linked list starting from the head correspond to some downward path connected in the binary tree otherwise return False. In this context downward path means a path that starts at some node and goes downwards.",
+      "examples": [
+        "Input: head = [4,2,8], root = [1,4,4,null,2,2,null,1,null,6,8,null,null,null,null,1,3]\nOutput: true",
+        "Input: head = [1,4,2,6], root = [1,4,4,null,2,2,null,1,null,6,8,null,null,null,null,1,3]\nOutput: true",
+        "Input: head = [1,4,2,6,8], root = [1,4,4,null,2,2,null,1,null,6,8,null,null,null,null,1,3]\nOutput: false"
+      ],
+      "constraints": [
+        "The number of nodes in the tree will be in the range [1, 2500].",
+        "The number of nodes in the list will be in the range [1, 100].",
+        "1 <= Node.val <= 100 for each node in the linked list and binary tree."
+      ]
+    },
+    {
+      "task_id": "parallel-courses",
+      "problem_description": "You are given an integer n, which indicates that there are n courses labeled from 1 to n. You are also given an array relations where relations[i] = [prevCoursei, nextCoursei], representing a prerequisite relationship between course prevCoursei and course nextCoursei: course prevCoursei has to be taken before course nextCoursei. In one semester, you can take any number of courses as long as you have taken all the prerequisites in the previous semester for the courses you are taking. Return the minimum number of semesters needed to take all courses. If there is no way to take all the courses, return -1.",
+      "examples": [
+        "Input: n = 3, relations = [[1,3],[2,3]]\nOutput: 2",
+        "Input: n = 3, relations = [[1,2],[2,3],[3,1]]\nOutput: -1"
+      ],
+      "constraints": [
+        "1 <= n <= 5000",
+        "1 <= relations.length <= 5000",
+        "relations[i].length == 2",
+        "1 <= prevCoursei, nextCoursei <= n",
+        "prevCoursei != nextCoursei",
+        "All the pairs [prevCoursei, nextCoursei] are unique."
+      ]
+    },
+    {
+      "task_id": "number-of-squareful-arrays",
+      "problem_description": "An array is squareful if the sum of every pair of adjacent elements is a perfect square. Given an integer array nums, return the number of permutations of nums that are squareful. Two permutations perm1 and perm2 are different if there is some index i such that perm1[i] != perm2[i].",
+      "examples": [
+        "Input: nums = [1,17,8]\nOutput: 2\nExplanation: [1,8,17] and [17,8,1] are the valid permutations.",
+        "Input: nums = [2,2,2]\nOutput: 1"
+      ],
+      "constraints": [
+        "1 <= nums.length <= 12",
+        "0 <= nums[i] <= 10^9"
+      ]
+    },
+    {
+      "task_id": "kth-smallest-instructions",
+      "problem_description": "Bob is standing at cell (0, 0), and he wants to reach destination: (row, column). He can only travel right and down. You are going to help Bob by providing instructions for him to reach destination. The instructions are represented as a string, where each character is either: 'H', meaning move horizontally (go right), or 'V', meaning move vertically (go down). Multiple instructions will lead Bob to destination. However, Bob has a lucky number k, and he wants the kth lexicographically smallest instructions that will lead him to destination. k is 1-indexed. Given an integer array destination and an integer k, return the kth lexicographically smallest instructions that will take Bob to destination.",
+      "examples": [
+        "Input: destination = [2,3], k = 1\nOutput: \"HHHVV\"",
+        "Input: destination = [2,3], k = 2\nOutput: \"HHVHV\"",
+        "Input: destination = [2,3], k = 3\nOutput: \"HHVVH\""
+      ],
+      "constraints": [
+        "destination.length == 2",
+        "1 <= row, column <= 15",
+        "1 <= k <= nCr(row + column, row), where nCr(a, b) denotes a choose b."
+      ]
+    },
+    {
+      "task_id": "subarrays-distinct-element-sum-of-squares-ii",
+      "problem_description": "You are given a 0-indexed integer array nums. The distinct count of a subarray of nums is defined as: Let nums[i..j] be a subarray of nums consisting of all the indices from i to j such that 0 <= i <= j < nums.length. Then the number of distinct values in nums[i..j] is called the distinct count of nums[i..j]. Return the sum of the squares of distinct counts of all subarrays of nums. A subarray is a contiguous non-empty sequence of elements within an array.",
+      "examples": [
+        "Input: nums = [1,2,1]\nOutput: 15",
+        "Input: nums = [2,2]\nOutput: 3"
+      ],
+      "constraints": [
+        "1 <= nums.length <= 105",
+        "1 <= nums[i] <= 105"
+      ]
+    },
+    {
+      "task_id": "alien-dictionary",
+      "problem_description": "You are given a list of strings words from the alien language's dictionary. Now it is claimed that the strings in words are sorted lexicographically by the rules of this new language. If this claim is incorrect, and the given arrangement of string in words cannot correspond to any order of letters, return \"\". Otherwise, return a string of the unique letters in the new alien language sorted in lexicographically increasing order by the new language's rules. If there are multiple solutions, return any of them.",
+      "examples": [
+        "Input: words = [\"wrt\",\"wrf\",\"er\",\"ett\",\"rftt\"]\nOutput: \"wertf\"",
+        "Input: words = [\"z\",\"x\"]\nOutput: \"zx\"",
+        "Input: words = [\"z\",\"x\",\"z\"]\nOutput: \"\"."
+      ],
+      "constraints": [
+        "1 <= words.length <= 100",
+        "1 <= words[i].length <= 100",
+        "words[i] consists of only lowercase English letters."
+      ]
+    },
+    {
+      "task_id": "stamping-the-sequence",
+      "problem_description": "You are given two strings stamp and target. Initially, there is a string s of length target.length with all s[i] == '?'. In one turn, you can place stamp over s and replace every letter in the s with the corresponding letter from stamp. Note that stamp must be fully contained in the boundaries of s in order to stamp (i.e., you cannot place stamp at index 3 of s). We want to convert s to target using at most 10 * target.length turns. Return an array of the index of the left-most letter being stamped at each turn. If we cannot obtain target from s within 10 * target.length turns, return an empty array.",
+      "examples": [
+        "Input: stamp = \"abc\", target = \"ababc\"\nOutput: [0,2]",
+        "Input: stamp = \"abca\", target = \"aabcaca\"\nOutput: [3,0,1]"
+      ],
+      "constraints": [
+        "1 <= stamp.length <= target.length <= 1000",
+        "stamp and target consist of lowercase English letters."
+      ]
+    },
+    {
+      "task_id": "maximize-number-of-nice-divisors",
+      "problem_description": "You are given a positive integer primeFactors. You are asked to construct a positive integer n that satisfies the following conditions: The number of prime factors of n (not necessarily distinct) is at most primeFactors. The number of nice divisors of n is maximized. Note that a divisor of n is nice if it is divisible by every prime factor of n. Return the number of nice divisors of n. Since that number can be too large, return it modulo 10^9 + 7.",
+      "examples": [
+        "Input: primeFactors = 5\nOutput: 6\n",
+        "Input: primeFactors = 8\nOutput: 18\n"
+      ],
+      "constraints": [
+        "1 <= primeFactors <= 10^9"
+      ]
+    },
+    {
+      "task_id": "text-justification",
+      "problem_description": "Given an array of strings words and a width maxWidth, format the text such that each line has exactly maxWidth characters and is fully (left and right) justified. You should pack your words in a greedy approach; that is, pack as many words as you can in each line. Pad extra spaces ' ' when necessary so that each line has exactly maxWidth characters. Extra spaces between words should be distributed as evenly as possible. If the number of spaces on a line does not divide evenly between words, the empty slots on the left will be assigned more spaces than the slots on the right. For the last line of text, it should be left-justified, and no extra space is inserted between words. A word is defined as a character sequence consisting of non-space characters only. Each word's length is guaranteed to be greater than 0 and not exceed maxWidth. The input array words contains at least one word.",
+      "examples": [
+        "Input: words = [\"This\", \"is\", \"an\", \"example\", \"of\", \"text\", \"justification.\"], maxWidth = 16\nOutput:\n[\n   \"This    is    an\",\n   \"example  of text\",\n   \"justification.  \"\n]",
+        "Input: words = [\"What\",\"must\",\"be\",\"acknowledgment\",\"shall\",\"be\"], maxWidth = 16\nOutput:\n[\n \"What   must   be\",\n \"acknowledgment  \",\n \"shall be        \"\n]",
+        "Input: words = [\"Science\",\"is\",\"what\",\"we\",\"understand\",\"well\",\"enough\",\"to\",\"explain\",\"to\",\"a\",\"computer.\",\"Art\",\"is\",\"everything\",\"else\",\"we\",\"do\"], maxWidth = 20\nOutput:\n[\n \"Science  is  what we\",\n \"understand      well\",\n \"enough to explain to\",\n \"a  computer.  Art is\",\n \"everything  else  we\",\n \"do                \"\n]"
+      ],
+      "constraints": [
+        "1 <= words.length <= 300",
+        "1 <= words[i].length <= 20",
+        "words[i] consists of only English letters and symbols.",
+        "1 <= maxWidth <= 100",
+        "words[i].length <= maxWidth"
+      ]
+    },
+    {
+      "task_id": "longest-chunked-palindrome-decomposition",
+      "problem_description": "You are given a string text. You should split it to k substrings (subtext1, subtext2, ..., subtextk) such that: subtexti is a non-empty string. The concatenation of all the substrings is equal to text (i.e., subtext1 + subtext2 + ... + subtextk == text). subtexti == subtextk - i + 1 for all valid values of i (i.e., 1 <= i <= k). Return the largest possible value of k.",
+      "examples": [
+        "Input: text = \"ghiabcdefhelloadamhelloabcdefghi\"\nOutput: 7\nExplanation: We can split the string on \"(ghi)(abcdef)(hello)(adam)(hello)(abcdef)(ghi)\".",
+        "Input: text = \"merchant\"\nOutput: 1\nExplanation: We can split the string on \"(merchant)\".",
+        "Input: text = \"antaprezatepzapreanta\"\nOutput: 11\nExplanation: We can split the string on \"(a)(nt)(a)(pre)(za)(tep)(za)(pre)(a)(nt)(a)\"."
+      ],
+      "constraints": [
+        "1 <= text.length <= 1000",
+        "text consists only of lowercase English characters."
+      ]
+    },
+    {
+      "task_id": "shortest-path-in-a-grid-with-obstacles-elimination",
+      "problem_description": "You are given an m x n integer matrix grid where each cell is either 0 (empty) or 1 (obstacle). You can move up, down, left, or right from and to an empty cell in one step. Return the minimum number of steps to walk from the upper left corner (0, 0) to the lower right corner (m - 1, n - 1) given that you can eliminate at most k obstacles. If it is not possible to find such walk return -1.",
+      "examples": [
+        "Input: grid = [[0,0,0],[1,1,0],[0,0,0],[0,1,1],[0,0,0]], k = 1\nOutput: 6",
+        "Input: grid = [[0,1,1],[1,1,1],[1,0,0]], k = 1\nOutput: -1"
+      ],
+      "constraints": [
+        "m == grid.length",
+        "n == grid[i].length",
+        "1 <= m, n <= 40",
+        "1 <= k <= m * n",
+        "grid[i][j] is either 0 or 1.",
+        "grid[0][0] == grid[m - 1][n - 1] == 0"
+      ]
+    },
+    {
+      "task_id": "find-two-non-overlapping-sub-arrays-each-with-target-sum",
+      "problem_description": "You are given an array of integers arr and an integer target. You have to find two non-overlapping sub-arrays of arr each with a sum equal target. There can be multiple answers so you have to find an answer where the sum of the lengths of the two sub-arrays is minimum. Return the minimum sum of the lengths of the two required sub-arrays, or return -1 if you cannot find such two sub-arrays.",
+      "examples": [
+        "Input: arr = [3,2,2,4,3], target = 3\nOutput: 2",
+        "Input: arr = [7,3,4,7], target = 7\nOutput: 2",
+        "Input: arr = [4,3,2,6,2,3,4], target = 6\nOutput: -1"
+      ],
+      "constraints": [
+        "1 <= arr.length <= 105",
+        "1 <= arr[i] <= 1000",
+        "1 <= target <= 108"
+      ]
+    },
+    {
+      "task_id": "longest-common-subpath",
+      "problem_description": "There is a country of n cities numbered from 0 to n - 1. In this country, there is a road connecting every pair of cities. There are m friends numbered from 0 to m - 1 who are traveling through the country. Each one of them will take a path consisting of some cities. Each path is represented by an integer array that contains the visited cities in order. The path may contain a city more than once, but the same city will not be listed consecutively. Given an integer n and a 2D integer array paths where paths[i] is an integer array representing the path of the ith friend, return the length of the longest common subpath that is shared by every friend's path, or 0 if there is no common subpath at all. A subpath of a path is a contiguous sequence of cities within that path.",
+      "examples": [
+        "Input: n = 5, paths = [[0,1,2,3,4], [2,3,4], [4,0,1,2,3]] Output: 2",
+        "Input: n = 3, paths = [[0],[1],[2]] Output: 0",
+        "Input: n = 5, paths = [[0,1,2,3,4], [4,3,2,1,0]] Output: 1"
+      ],
+      "constraints": [
+        "1 <= n <= 105",
+        "m == paths.length",
+        "2 <= m <= 105",
+        "sum(paths[i].length) <= 105",
+        "0 <= paths[i][j] < n",
+        "The same city is not listed multiple times consecutively in paths[i]."
+      ]
+    },
+    {
+      "task_id": "top-k-frequent-elements",
+      "problem_description": "Given an integer array nums and an integer k, return the k most frequent elements. You may return the answer in any order.",
+      "examples": [
+        "Input: nums = [1,1,1,2,2,3], k = 2\nOutput: [1,2]",
+        "Input: nums = [1], k = 1\nOutput: [1]"
+      ],
+      "constraints": [
+        "1 <= nums.length <= 105",
+        "-104 <= nums[i] <= 104",
+        "k is in the range [1, the number of unique elements in the array].",
+        "It is guaranteed that the answer is unique."
+      ]
+    },
+    {
+      "task_id": "count-of-smaller-numbers-after-self",
+      "problem_description": "Given an integer array nums, return an integer array counts where counts[i] is the number of smaller elements to the right of nums[i].",
+      "examples": [
+        "Input: nums = [5,2,6,1]\nOutput: [2,1,1,0]",
+        "Input: nums = [-1]\nOutput: [0]",
+        "Input: nums = [-1,-1]\nOutput: [0,0]"
+      ],
+      "constraints": [
+        "1 <= nums.length <= 105",
+        "-104 <= nums[i] <= 104"
+      ]
+    },
+    {
+      "task_id": "closest-room",
+      "problem_description": "There is a hotel with n rooms. The rooms are represented by a 2D integer array rooms where rooms[i] = [roomIdi, sizei] denotes that there is a room with room number roomIdi and size equal to sizei. Each roomIdi is guaranteed to be unique. You are also given k queries in a 2D array queries where queries[j] = [preferredj, minSizej]. The answer to the jth query is the room number id of a room such that: The room has a size of at least minSizej, and abs(id - preferredj) is minimized, where abs(x) is the absolute value of x. If there is a tie in the absolute difference, then use the room with the smallest such id. If there is no such room, the answer is -1. Return an array answer of length k where answer[j] contains the answer to the jth query.",
+      "examples": [
+        "Input: rooms = [[2,2],[1,2],[3,2]], queries = [[3,1],[3,3],[5,2]]\nOutput: [3,-1,3]",
+        "Input: rooms = [[1,4],[2,3],[3,5],[4,1],[5,2]], queries = [[2,3],[2,4],[2,5]]\nOutput: [2,1,3]"
+      ],
+      "constraints": [
+        "n == rooms.length",
+        "1 <= n <= 105",
+        "k == queries.length",
+        "1 <= k <= 104",
+        "1 <= roomIdi, preferredj <= 107",
+        "1 <= sizei, minSizej <= 107"
+      ]
+    },
+    {
+      "task_id": "find-the-k-or-of-an-array",
+      "problem_description": "You are given an integer array nums, and an integer k. Let's introduce K-or operation by extending the standard bitwise OR. In K-or, a bit position in the result is set to 1 if at least k numbers in nums have a 1 in that position. Return the K-or of nums.",
+      "examples": [
+        "Input: nums = [7,12,9,8,9,15], k = 4\nOutput: 9",
+        "Input: nums = [2,12,1,11,4,5], k = 6\nOutput: 0",
+        "Input: nums = [10,8,5,9,11,6,8], k = 1\nOutput: 15"
+      ],
+      "constraints": [
+        "1 <= nums.length <= 50",
+        "0 <= nums[i] < 231",
+        "1 <= k <= nums.length"
+      ]
+    },
+    {
+      "task_id": "divide-an-array-into-subarrays-with-minimum-cost-i",
+      "problem_description": "You are given an array of integers nums of length n. The cost of an array is the value of its first element. You need to divide nums into 3 disjoint contiguous subarrays. Return the minimum possible sum of the cost of these subarrays.",
+      "examples": [
+        "Input: nums = [1,2,3,12]\nOutput: 6",
+        "Input: nums = [5,4,3]\nOutput: 12",
+        "Input: nums = [10,3,1,1]\nOutput: 12"
+      ],
+      "constraints": [
+        "3 <= n <= 50",
+        "1 <= nums[i] <= 50"
+      ]
+    },
+    {
+      "task_id": "stone-game",
+      "problem_description": "Alice and Bob play a game with piles of stones. There are an even number of piles arranged in a row, and each pile has a positive integer number of stones piles[i]. The objective of the game is to end with the most stones. The total number of stones across all the piles is odd, so there are no ties. Alice and Bob take turns, with Alice starting first. Each turn, a player takes the entire pile of stones either from the beginning or from the end of the row. This continues until there are no more piles left, at which point the person with the most stones wins. Assuming Alice and Bob play optimally, return true if Alice wins the game, or false if Bob wins.",
+      "examples": [
+        "Input: piles = [5,3,4,5]\nOutput: true",
+        "Input: piles = [3,7,2,3]\nOutput: true"
+      ],
+      "constraints": [
+        "2 <= piles.length <= 500",
+        "piles.length is even.",
+        "1 <= piles[i] <= 500",
+        "sum(piles[i]) is odd."
+      ]
+    },
+    {
+      "task_id": "magic-squares-in-grid",
+      "problem_description": "A 3 x 3 magic square is a 3 x 3 grid filled with distinct numbers from 1 to 9 such that each row, column, and both diagonals all have the same sum. Given a row x col grid of integers, how many 3 x 3 magic square subgrids are there? Note: while a magic square can only contain numbers from 1 to 9, grid may contain numbers up to 15.",
+      "examples": [
+        "Input: grid = [[4,3,8,4],[9,5,1,9],[2,7,6,2]]\nOutput: 1\nExplanation: \nThe following subgrid is a 3 x 3 magic square:\n\nwhile this one is not:\n\nIn total, there is only one magic square inside the given grid.",
+        "Input: grid = [[8]]\nOutput: 0"
+      ],
+      "constraints": [
+        "row == grid.length",
+        "col == grid[i].length",
+        "1 <= row, col <= 10",
+        "0 <= grid[i][j] <= 15"
+      ]
+    },
+    {
+      "task_id": "sudoku-solver",
+      "problem_description": "Write a program to solve a Sudoku puzzle by filling the empty cells. A sudoku solution must satisfy all of the following rules: Each of the digits 1-9 must occur exactly once in each row. Each of the digits 1-9 must occur exactly once in each column. Each of the digits 1-9 must occur exactly once in each of the 9 3x3 sub-boxes of the grid. The '.' character indicates empty cells.",
+      "examples": [
+        "Input: board = [[\"5\",\"3\",\".\",\".\",\"7\",\".\",\".\",\".\",\".\"],[\"6\",\".\",\".\",\"1\",\"9\",\"5\",\".\",\".\",\".\"],[\".\",\"9\",\"8\",\".\",\".\",\".\",\".\",\"6\",\".\"],[\"8\",\".\",\".\",\".\",\"6\",\".\",\".\",\".\",\"3\"],[\"4\",\".\",\".\",\"8\",\".\",\"3\",\".\",\".\",\"1\"],[\"7\",\".\",\".\",\".\",\"2\",\".\",\".\",\".\",\"6\"],[\".\",\"6\",\".\",\".\",\".\",\".\",\"2\",\"8\",\".\"],[\".\",\".\",\".\",\"4\",\"1\",\"9\",\".\",\".\",\"5\"],[\".\",\".\",\".\",\".\",\"8\",\".\",\".\",\"7\",\"9\"]]\nOutput: [[\"5\",\"3\",\"4\",\"6\",\"7\",\"8\",\"9\",\"1\",\"2\"],[\"6\",\"7\",\"2\",\"1\",\"9\",\"5\",\"3\",\"4\",\"8\"],[\"1\",\"9\",\"8\",\"3\",\"4\",\"2\",\"5\",\"6\",\"7\"],[\"8\",\"5\",\"9\",\"7\",\"6\",\"1\",\"4\",\"2\",\"3\"],[\"4\",\"2\",\"6\",\"8\",\"5\",\"3\",\"7\",\"9\",\"1\"],[\"7\",\"1\",\"3\",\"9\",\"2\",\"4\",\"8\",\"5\",\"6\"],[\"9\",\"6\",\"1\",\"5\",\"3\",\"7\",\"2\",\"8\",\"4\"],[\"2\",\"8\",\"7\",\"4\",\"1\",\"9\",\"6\",\"3\",\"5\"],[\"3\",\"4\",\"5\",\"2\",\"8\",\"6\",\"1\",\"7\",\"9\"]]"
+      ],
+      "constraints": [
+        "board.length == 9",
+        "board[i].length == 9",
+        "board[i][j] is a digit or '.'",
+        "It is guaranteed that the input board has only one solution."
+      ]
+    },
+    {
+      "task_id": "stamping-the-grid",
+      "problem_description": "You are given an m x n binary matrix grid where each cell is either 0 (empty) or 1 (occupied). You are then given stamps of size stampHeight x stampWidth. We want to fit the stamps such that they follow the given restrictions and requirements: Cover all the empty cells. Do not cover any of the occupied cells. We can put as many stamps as we want. Stamps can overlap with each other. Stamps are not allowed to be rotated. Stamps must stay completely inside the grid. Return true if it is possible to fit the stamps while following the given restrictions and requirements. Otherwise, return false.",
+      "examples": [
+        "Input: grid = [[1,0,0,0],[1,0,0,0],[1,0,0,0],[1,0,0,0],[1,0,0,0]], stampHeight = 4, stampWidth = 3\nOutput: true",
+        "Input: grid = [[1,0,0,0],[0,1,0,0],[0,0,1,0],[0,0,0,1]], stampHeight = 2, stampWidth = 2\nOutput: false"
+      ],
+      "constraints": [
+        "m == grid.length",
+        "n == grid[r].length",
+        "1 <= m, n <= 105",
+        "1 <= m * n <= 2 * 105",
+        "grid[r][c] is either 0 or 1.",
+        "1 <= stampHeight, stampWidth <= 105"
+      ]
+    },
+    {
+      "task_id": "minimum-cost-to-convert-string-ii",
+      "problem_description": "You are given two 0-indexed strings source and target, both of length n and consisting of lowercase English characters. You are also given two 0-indexed string arrays original and changed, and an integer array cost, where cost[i] represents the cost of converting the string original[i] to the string changed[i]. You start with the string source. In one operation, you can pick a substring x from the string, and change it to y at a cost of z if there exists any index j such that cost[j] == z, original[j] == x, and changed[j] == y. You are allowed to do any number of operations, but any pair of operations must satisfy either of these two conditions: The substrings picked in the operations are source[a..b] and source[c..d] with either b < c or d < a. In other words, the indices picked in both operations are disjoint. The substrings picked in the operations are source[a..b] and source[c..d] with a == c and b == d. In other words, the indices picked in both operations are identical. Return the minimum cost to convert the string source to the string target using any number of operations. If it is impossible to convert source to target, return -1. Note that there may exist indices i, j such that original[j] == original[i] and changed[j] == changed[i].",
+      "examples": [
+        "Input: source = \"abcd\", target = \"acbe\", original = [\"a\",\"b\",\"c\",\"c\",\"e\",\"d\"], changed = [\"b\",\"c\",\"b\",\"e\",\"b\",\"e\"], cost = [2,5,5,1,2,20]\nOutput: 28",
+        "Input: source = \"abcdefgh\", target = \"acdeeghh\", original = [\"bcd\",\"fgh\",\"thh\"], changed = [\"cde\",\"thh\",\"ghh\"], cost = [1,3,5]\nOutput: 9",
+        "Input: source = \"abcdefgh\", target = \"addddddd\", original = [\"bcd\",\"defgh\"], changed = [\"ddd\",\"ddddd\"], cost = [100,1578]\nOutput: -1"
+      ],
+      "constraints": [
+        "1 <= source.length == target.length <= 1000",
+        "source, target consist only of lowercase English characters.",
+        "1 <= cost.length == original.length == changed.length <= 100",
+        "1 <= original[i].length == changed[i].length <= source.length",
+        "original[i], changed[i] consist only of lowercase English characters.",
+        "original[i] != changed[i]",
+        "1 <= cost[i] <= 106"
+      ]
+    },
+    {
+      "task_id": "beautiful-array",
+      "problem_description": "An array nums of length n is beautiful if: nums is a permutation of the integers in the range [1, n]. For every 0 <= i < j < n, there is no index k with i < k < j where 2 * nums[k] == nums[i] + nums[j]. Given the integer n, return any beautiful array nums of length n. There will be at least one valid answer for the given n.",
+      "examples": [
+        "Input: n = 4\nOutput: [2,1,4,3]",
+        "Input: n = 5\nOutput: [3,1,2,5,4]"
+      ],
+      "constraints": [
+        "1 <= n <= 1000"
+      ]
+    },
+    {
+      "task_id": "sort-integers-by-the-power-value",
+      "problem_description": "The power of an integer x is defined as the number of steps needed to transform x into 1 using the following steps: if x is even then x = x / 2, if x is odd then x = 3 * x + 1. Given three integers lo, hi and k, the task is to sort all integers in the interval [lo, hi] by the power value in ascending order, if two or more integers have the same power value sort them by ascending order. Return the kth integer in the range [lo, hi] sorted by the power value. Notice that for any integer x (lo <= x <= hi) it is guaranteed that x will transform into 1 using these steps and that the power of x will fit in a 32-bit signed integer.",
+      "examples": [
+        "Input: lo = 12, hi = 15, k = 2\nOutput: 13",
+        "Input: lo = 7, hi = 11, k = 4\nOutput: 7"
+      ],
+      "constraints": [
+        "1 <= lo <= hi <= 1000",
+        "1 <= k <= hi - lo + 1"
+      ]
+    },
+    {
+      "task_id": "prime-subtraction-operation",
+      "problem_description": "You are given a 0-indexed integer array nums of length n. You can perform the following operation as many times as you want: Pick an index i that you haven\u2019t picked before, and pick a prime p strictly less than nums[i], then subtract p from nums[i]. Return true if you can make nums a strictly increasing array using the above operation and false otherwise. A strictly increasing array is an array whose each element is strictly greater than its preceding element.",
+      "examples": [
+        "Input: nums = [4,9,6,10]\nOutput: true",
+        "Input: nums = [6,8,11,12]\nOutput: true",
+        "Input: nums = [5,8,3]\nOutput: false"
+      ],
+      "constraints": [
+        "1 <= nums.length <= 1000",
+        "1 <= nums[i] <= 1000",
+        "nums.length == n"
+      ]
+    },
+    {
+      "task_id": "largest-combination-with-bitwise-and-greater-than-zero",
+      "problem_description": "The bitwise AND of an array nums is the bitwise AND of all integers in nums. You are given an array of positive integers candidates. Compute the bitwise AND for all possible combinations of elements in the candidates array. Return the size of the largest combination of candidates with a bitwise AND greater than 0.",
+      "examples": [
+        "Input: candidates = [16,17,71,62,12,24,14]\nOutput: 4\nExplanation: The combination [16,17,62,24] has a bitwise AND of 16 & 17 & 62 & 24 = 16 > 0. The size of the combination is 4. It can be shown that no combination with a size greater than 4 has a bitwise AND greater than 0. Note that more than one combination may have the largest size. For example, the combination [62,12,24,14] has a bitwise AND of 62 & 12 & 24 & 14 = 8 > 0.",
+        "Input: candidates = [8,8]\nOutput: 2\nExplanation: The largest combination [8,8] has a bitwise AND of 8 & 8 = 8 > 0. The size of the combination is 2, so we return 2."
+      ],
+      "constraints": [
+        "1 <= candidates.length <= 105",
+        "1 <= candidates[i] <= 107"
+      ]
+    },
+    {
+      "task_id": "array-partition",
+      "problem_description": "Given an integer array nums of 2n integers, group these integers into n pairs (a1, b1), (a2, b2), ..., (an, bn) such that the sum of min(ai, bi) for all i is maximized. Return the maximized sum.",
+      "examples": [
+        "Input: nums = [1,4,3,2]\nOutput: 4",
+        "Input: nums = [6,2,6,5,1,2]\nOutput: 9"
+      ],
+      "constraints": [
+        "1 <= n <= 104",
+        "nums.length == 2 * n",
+        "-104 <= nums[i] <= 104"
+      ]
+    },
+    {
+      "task_id": "maximum-number-of-intersections-on-the-chart",
+      "problem_description": "There is a line chart consisting of n points connected by line segments. You are given a 1-indexed integer array y. The kth point has coordinates (k, y[k]). There are no horizontal lines; that is, no two consecutive points have the same y-coordinate. We can draw an infinitely long horizontal line. Return the maximum number of points of intersection of the line with the chart.",
+      "examples": [
+        "Input: y = [1,2,1,2,1,3,2]\nOutput: 5",
+        "Input: y = [2,1,3,4,5]\nOutput: 2"
+      ],
+      "constraints": [
+        "2 <= y.length <= 105",
+        "1 <= y[i] <= 109",
+        "y[i] != y[i + 1] for i in range [1, n - 1]"
+      ]
+    },
+    {
+      "task_id": "number-of-corner-rectangles",
+      "problem_description": "Given an m x n integer matrix grid where each entry is only 0 or 1, return the number of corner rectangles. A corner rectangle is four distinct 1's on the grid that forms an axis-aligned rectangle. Note that only the corners need to have the value 1. Also, all four 1's used must be distinct.",
+      "examples": [
+        "Input: grid = [[1,0,0,1,0],[0,0,1,0,1],[0,0,0,1,0],[1,0,1,0,1]]\nOutput: 1\nExplanation: There is only one corner rectangle, with corners grid[1][2], grid[1][4], grid[3][2], grid[3][4].",
+        "Input: grid = [[1,1,1],[1,1,1],[1,1,1]]\nOutput: 9\nExplanation: There are four 2x2 rectangles, four 2x3 and 3x2 rectangles, and one 3x3 rectangle.",
+        "Input: grid = [[1,1,1,1]]\nOutput: 0\nExplanation: Rectangles must have four distinct corners."
+      ],
+      "constraints": [
+        "m == grid.length",
+        "n == grid[i].length",
+        "1 <= m, n <= 200",
+        "grid[i][j] is either 0 or 1.",
+        "The number of 1's in the grid is in the range [1, 6000]."
+      ]
+    },
+    {
+      "task_id": "maximum-of-minimum-values-in-all-subarrays",
+      "problem_description": "You are given an integer array nums of size n. You are asked to solve n queries for each integer i in the range 0 <= i < n. To solve the ith query: Find the minimum value in each possible subarray of size i + 1 of the array nums. Find the maximum of those minimum values. This maximum is the answer to the query. Return a 0-indexed integer array ans of size n such that ans[i] is the answer to the ith query. A subarray is a contiguous sequence of elements in an array.",
+      "examples": [
+        "Input: nums = [0,1,2,4]\nOutput: [4,2,1,0]",
+        "Input: nums = [10,20,50,10]\nOutput: [50,20,10,10]"
+      ],
+      "constraints": [
+        "n == nums.length",
+        "1 <= n <= 105",
+        "0 <= nums[i] <= 109"
+      ]
+    },
+    {
+      "task_id": "top-k-frequent-elements",
+      "problem_description": "Given an integer array nums and an integer k, return the k most frequent elements. You may return the answer in any order.",
+      "examples": [
+        "Input: nums = [1,1,1,2,2,3], k = 2\nOutput: [1,2]",
+        "Input: nums = [1], k = 1\nOutput: [1]"
+      ],
+      "constraints": [
+        "1 <= nums.length <= 105",
+        "-104 <= nums[i] <= 104",
+        "k is in the range [1, the number of unique elements in the array].",
+        "It is guaranteed that the answer is unique."
+      ]
+    },
+    {
+      "task_id": "maximum-deletions-on-a-string",
+      "problem_description": "You are given a string s consisting of only lowercase English letters. In one operation, you can delete the entire string s, or delete the first i letters of s if the first i letters of s are equal to the following i letters in s, for any i in the range 1 <= i <= s.length / 2. Return the maximum number of operations needed to delete all of s.",
+      "examples": [
+        "Input: s = \"abcabcdabc\"\nOutput: 2\nExplanation:\n- Delete the first 3 letters (\"abc\") since the next 3 letters are equal. Now, s = \"abcdabc\".\n- Delete all the letters.\nWe used 2 operations so return 2. It can be proven that 2 is the maximum number of operations needed.\nNote that in the second operation we cannot delete \"abc\" again because the next occurrence of \"abc\" does not happen in the next 3 letters.",
+        "Input: s = \"aaabaab\"\nOutput: 4\nExplanation:\n- Delete the first letter (\"a\") since the next letter is equal. Now, s = \"aabaab\".\n- Delete the first 3 letters (\"aab\") since the next 3 letters are equal. Now, s = \"aab\".\n- Delete the first letter (\"a\") since the next letter is equal. Now, s = \"ab\".\n- Delete all the letters.\nWe used 4 operations so return 4. It can be proven that 4 is the maximum number of operations needed.",
+        "Input: s = \"aaaaa\"\nOutput: 5\nExplanation: In each operation, we can delete the first letter of s."
+      ],
+      "constraints": [
+        "1 <= s.length <= 4000",
+        "s consists only of lowercase English letters."
+      ]
+    },
+    {
+      "task_id": "handling-sum-queries-after-update",
+      "problem_description": "You are given two 0-indexed arrays nums1 and nums2 and a 2D array queries of queries. There are three types of queries: For a query of type 1, queries[i] = [1, l, r]. Flip the values from 0 to 1 and from 1 to 0 in nums1 from index l to index r. Both l and r are 0-indexed. For a query of type 2, queries[i] = [2, p, 0]. For every index 0 <= i < n, set nums2[i] = nums2[i] + nums1[i] * p. For a query of type 3, queries[i] = [3, 0, 0]. Find the sum of the elements in nums2. Return an array containing all the answers to the third type queries.",
+      "examples": [
+        "Input: nums1 = [1,0,1], nums2 = [0,0,0], queries = [[1,1,1],[2,1,0],[3,0,0]] Output: [3]",
+        "Input: nums1 = [1], nums2 = [5], queries = [[2,0,0],[3,0,0]] Output: [5]"
+      ],
+      "constraints": [
+        "1 <= nums1.length,nums2.length <= 105",
+        "nums1.length = nums2.length",
+        "1 <= queries.length <= 105",
+        "queries[i].length = 3",
+        "0 <= l <= r <= nums1.length - 1",
+        "0 <= p <= 106",
+        "0 <= nums1[i] <= 1",
+        "0 <= nums2[i] <= 109"
+      ]
+    },
+    {
+      "task_id": "number-of-enclaves",
+      "problem_description": "You are given an m x n binary matrix grid, where 0 represents a sea cell and 1 represents a land cell. A move consists of walking from one land cell to another adjacent (4-directionally) land cell or walking off the boundary of the grid. Return the number of land cells in grid for which we cannot walk off the boundary of the grid in any number of moves.",
+      "examples": [
+        "Input: grid = [[0,0,0,0],[1,0,1,0],[0,1,1,0],[0,0,0,0]]\nOutput: 3",
+        "Input: grid = [[0,1,1,0],[0,0,1,0],[0,0,1,0],[0,0,0,0]]\nOutput: 0"
+      ],
+      "constraints": [
+        "m == grid.length",
+        "n == grid[i].length",
+        "1 <= m, n <= 500",
+        "grid[i][j] is either 0 or 1."
+      ]
+    },
+    {
+      "task_id": "flip-equivalent-binary-trees",
+      "problem_description": "For a binary tree T, we can define a flip operation as follows: choose any node, and swap the left and right child subtrees. A binary tree X is flip equivalent to a binary tree Y if and only if we can make X equal to Y after some number of flip operations. Given the roots of two binary trees root1 and root2, return true if the two trees are flip equivalent or false otherwise.",
+      "examples": [
+        "Input: root1 = [1,2,3,4,5,6,null,null,null,7,8], root2 = [1,3,2,null,6,4,5,null,null,null,null,8,7]\nOutput: true",
+        "Input: root1 = [], root2 = []\nOutput: true",
+        "Input: root1 = [], root2 = [1]\nOutput: false"
+      ],
+      "constraints": [
+        "The number of nodes in each tree is in the range [0, 100].",
+        "Each tree will have unique node values in the range [0, 99]."
+      ]
+    },
+    {
+      "task_id": "minimum-score-by-changing-two-elements",
+      "problem_description": "You are given an integer array nums. The low score of nums is the minimum absolute difference between any two integers. The high score of nums is the maximum absolute difference between any two integers. The score of nums is the sum of the high and low scores. Return the minimum score after changing two elements of nums.",
+      "examples": [
+        "Input: nums = [1,4,7,8,5]\nOutput: 3\n",
+        "Input: nums = [1,4,3]\nOutput: 0\n"
+      ],
+      "constraints": [
+        "3 <= nums.length <= 105",
+        "1 <= nums[i] <= 109"
+      ]
+    },
+    {
+      "task_id": "minimum-swaps-to-group-all-1s-together-ii",
+      "problem_description": "A swap is defined as taking two distinct positions in an array and swapping the values in them. A circular array is defined as an array where we consider the first element and the last element to be adjacent. Given a binary circular array nums, return the minimum number of swaps required to group all 1's present in the array together at any location.",
+      "examples": [
+        "Input: nums = [0,1,0,1,1,0,0]\nOutput: 1",
+        "Input: nums = [0,1,1,1,0,0,1,1,0]\nOutput: 2",
+        "Input: nums = [1,1,0,0,1]\nOutput: 0"
+      ],
+      "constraints": [
+        "1 <= nums.length <= 105",
+        "nums[i] is either 0 or 1."
+      ]
+    }
+  ]
+}

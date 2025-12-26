@@ -1,0 +1,31 @@
+{
+  "PSR": 0.0,
+  "TSR": 0.0,
+  "CHF": 0.0,
+  "CCR": 0.0,
+  "persona_breakdown": {
+    "implementation": 0.0,
+    "technical": 0.0
+  },
+  "raw": {
+    "total_inputs": 2,
+    "successful_problems": 0,
+    "stage3_failures": 2,
+    "stage4_failures": 0,
+    "stage5_failures": 0,
+    "circular_healing_count": 0,
+    "consensus_success": 0,
+    "consensus_fail": 2,
+    "total_candidate_tests": 0,
+    "total_golden_tests": 0,
+    "healing_attempts": [],
+    "persona_success": {
+      "implementation": 0,
+      "technical": 0
+    },
+    "persona_total": {
+      "implementation": 1,
+      "technical": 1
+    }
+  }
+}
