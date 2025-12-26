@@ -166,6 +166,25 @@ class EvaluateResponse(BaseModel):
 # UTILITIES
 # ============================================================================
 
+def reconstruct_args(json_args: List[Any],
+                     signature: Dict[str, Any],
+                     leetcode_ns: Dict[str, Any]) -> List[Any]:
+    """
+    Canonical JSON → runtime object reconstruction.
+    THIS IS THE ONLY PLACE where TreeNode/ListNode may be created.
+    """
+    reconstructed = []
+    for value, arg_type in zip(json_args, signature["arg_types"]):
+        if value is None:
+            reconstructed.append(None)
+        elif "ListNode" in arg_type and isinstance(value, list):
+            reconstructed.append(leetcode_ns["list_node"](value))
+        elif "TreeNode" in arg_type and isinstance(value, list):
+            reconstructed.append(leetcode_ns["tree_node"](value))
+        else:
+            reconstructed.append(value)
+    return reconstructed
+
 def _exec_worker(code: str, globals_dict: dict, result_queue):
     try:
         exec(code, globals_dict)
@@ -264,19 +283,19 @@ def robust_serialize(obj: Any) -> Any:
     except:
         return str(obj)
 
-def auto_convert_arg(value: Any, arg_type: str) -> Any:
-    """Convert JSON primitives to Python objects (ListNode, TreeNode)"""
-    if 'ListNode' in arg_type:
-        if isinstance(value, list):
-            namespace = {}
-            exec(LEETCODE_PROMPT, namespace)
-            return namespace['list_node'](value)
-    elif 'TreeNode' in arg_type:
-        if isinstance(value, list):
-            namespace = {}
-            exec(LEETCODE_PROMPT, namespace)
-            return namespace['tree_node'](value)
-    return value
+# def auto_convert_arg(value: Any, arg_type: str) -> Any:
+#     """Convert JSON primitives to Python objects (ListNode, TreeNode)"""
+#     if 'ListNode' in arg_type:
+#         if isinstance(value, list):
+#             namespace = {}
+#             exec(LEETCODE_PROMPT, namespace)
+#             return namespace['list_node'](value)
+#     elif 'TreeNode' in arg_type:
+#         if isinstance(value, list):
+#             namespace = {}
+#             exec(LEETCODE_PROMPT, namespace)
+#             return namespace['tree_node'](value)
+#     return value
 
 def extract_signature(starter_code: str) -> Dict[str, Any]:
     """Extract function signature using AST"""
@@ -450,7 +469,7 @@ REQUIREMENTS:
 4. Edge cases: empty, single element, max values, sorted, reverse.
 5. **DATA STRUCTURE FORMATTING (CRITICAL)**:
   - ListNode as List[int]: [1,2,3].
-  - TreeNode as List[int|None] in level order: [1,2,None,4]. MUST use LeetCode standard **Level-Order Traversal** (Flat List).
+  - TreeNode as List[int|None] in level order: [1,2,None,4]. MUST use LeetCode standard **Level-Order Traversal** (Flat List, NOT NESTED).
   - Linked Lists: Ensure no unintentional cycles unless testing for them.
   - Matrices: Ensure rows are consistent lengths unless "Jagged Array" is explicitly allowed/implied by the problem (e.g. "Triangle").
 7. Generate AT LEAST 10 test cases, covering all categories extensively.
@@ -755,7 +774,8 @@ def stage5_consensus_reference(spec: Dict[str, Any],
     # --- HELPER: Safe Runner with Timeout (Prevents Infinite Loops) ---
     def run_with_timeout(code_str: str, input_args: list, timeout_sec: int = 2):
         """Compiles and runs code in a separate process to enforce timeout."""
-        def _worker(q, c, args, types):
+        # def _worker(q, c, args, types):
+        def _worker(q, c, args, signature):
             try:
                 # 1. Setup Environment
                 local_ns = {}
@@ -765,21 +785,25 @@ def stage5_consensus_reference(spec: Dict[str, Any],
                 
                 # 2. Compile
                 exec(c, local_ns)
+                if 'Solution' not in local_ns or not hasattr(local_ns['Solution'], 'solve'):
+                    raise RuntimeError("Solution.solve() not defined")
                 solver = local_ns['Solution']()
                 
                 # 3. Convert Args
-                conv_args = []
-                for v, t in zip(args, types):
-                    conv_args.append(auto_convert_arg(v, t))
-                
-                # 4. Run & Serialize
+                conv_args = reconstruct_args(args, signature, local_ns)
                 res = solver.solve(*conv_args)
+                # conv_args = []
+                # for v, t in zip(args, types):
+                #     conv_args.append(auto_convert_arg(v, t))
+                
+                # # 4. Run & Serialize
+                # res = solver.solve(*conv_args)
                 q.put(("ok", robust_serialize(res)))
             except Exception as e:
                 q.put(("error", str(e)))
 
         q = multiprocessing.Queue()
-        p = multiprocessing.Process(target=_worker, args=(q, code_str, input_args, arg_types))
+        p = multiprocessing.Process(target=_worker, args=(q, code_str, input_args, signature))
         p.start()
         
         try:
@@ -1019,17 +1043,21 @@ def stage5_build_golden_suite(reference_code: str, test_inputs: List[List[Any]],
                     local_ns = {}
                     exec(LEETCODE_PROMPT, local_ns)
                     safe_exec(code, local_ns)
+                    if 'Solution' not in local_ns or not hasattr(local_ns['Solution'], 'solve'):
+                        raise RuntimeError("Solution.solve() not defined")
+
                     solver = local_ns['Solution']()
                     
                     # 2. Convert Args (JSON -> Objects)
-                    converted_args = []
-                    for v, t in zip(input_args, types):
-                        if 'ListNode' in t and isinstance(v, list):
-                            converted_args.append(local_ns['list_node'](v))
-                        elif 'TreeNode' in t and isinstance(v, list):
-                            converted_args.append(local_ns['tree_node'](v))
-                        else:
-                            converted_args.append(v)
+                    # converted_args = []
+                    # for v, t in zip(input_args, types):
+                    #     if 'ListNode' in t and isinstance(v, list):
+                    #         converted_args.append(local_ns['list_node'](v))
+                    #     elif 'TreeNode' in t and isinstance(v, list):
+                    #         converted_args.append(local_ns['tree_node'](v))
+                    #     else:
+                    #         converted_args.append(v)
+                    converted_args = reconstruct_args(input_args, signature, local_ns)
 
                     # 3. Run Solution
                     raw_result = solver.solve(*converted_args)
@@ -1061,7 +1089,7 @@ def stage5_build_golden_suite(reference_code: str, test_inputs: List[List[Any]],
 
             if status == "error":
                 print(f"[STAGE 5] Test {idx} dropped: Runtime Error: {payload}")
-                failures_log.append(f"Input {idx}: Runtime Error - {str(payload)[:100]}")
+                failures_log.append(f"Input {idx}: Runtime Error - {str(payload)[:int(0.8 * len(str(payload)))]}")
                 continue
 
             golden_suite.append({
@@ -1103,10 +1131,20 @@ def stage5_build_golden_suite(reference_code: str, test_inputs: List[List[Any]],
 # STAGE 6: USER EVALUATION
 # ============================================================================
 
-def check_correctness(actual: Any, expected: Any, mode: str) -> bool:
+def check_correctness(actual, expected, mode, return_type, leetcode_ns):
     """Compare outputs based on evaluation type"""
     try:
-        if mode == "float_tolerance":
+        if "TreeNode" in return_type:
+            return leetcode_ns["is_same_tree"](
+                leetcode_ns["tree_node"](actual),
+                leetcode_ns["tree_node"](expected)
+            )
+        elif "ListNode" in return_type:
+            return leetcode_ns["is_same_list"](
+                leetcode_ns["list_node"](actual),
+                leetcode_ns["list_node"](expected)
+            )
+        elif mode == "float_tolerance":
             return math.isclose(float(actual), float(expected), rel_tol=1e-5)
         elif mode == "list_any_order":
             if isinstance(actual, list) and isinstance(expected, list):
@@ -1244,6 +1282,8 @@ def stage6_evaluate(user_code: str, golden_suite: List[Dict[str, Any]],
             "passed": 0, "total": len(golden_suite), "results": []
         }
 
+    leetcode_ns = {}
+    exec(LEETCODE_PROMPT, leetcode_ns)
     for idx, test_case in enumerate(golden_suite):
         test_input = test_case['input']
         expected = test_case['expected']
@@ -1252,7 +1292,7 @@ def stage6_evaluate(user_code: str, golden_suite: List[Dict[str, Any]],
             # Prepare args in parent
             # Note: We pass raw data, not 'ListNode' objects, to avoid pickling issues
             
-            def _run_user_sandboxed(code, input_args, types, q):
+            def _run_user_sandboxed(code, input_args, q):
                 try:
                     # A. Setup Environment (Inside Child)
                     import sys
@@ -1268,22 +1308,23 @@ def stage6_evaluate(user_code: str, golden_suite: List[Dict[str, Any]],
                         q.put(("error", f"Runtime Import/Definition Error: {e}"))
                         return
 
-                    if 'Solution' not in local_ns:
-                        q.put(("error", "Class 'Solution' not found in code"))
+                    if 'Solution' not in local_ns or not hasattr(local_ns['Solution'], 'solve'):
+                        q.put(("error", "Solution.solve() not defined"))
                         return
                         
                     solver = local_ns['Solution']()
                     
                     # C. Convert Args
-                    converted_args = []
-                    for v, t in zip(input_args, types):
-                        if 'ListNode' in t and isinstance(v, list):
-                            converted_args.append(local_ns['list_node'](v))
-                        elif 'TreeNode' in t and isinstance(v, list):
-                            converted_args.append(local_ns['tree_node'](v))
-                        else:
-                            converted_args.append(v)
+                    # converted_args = []
+                    # for v, t in zip(input_args, types):
+                    #     if 'ListNode' in t and isinstance(v, list):
+                    #         converted_args.append(local_ns['list_node'](v))
+                    #     elif 'TreeNode' in t and isinstance(v, list):
+                    #         converted_args.append(local_ns['tree_node'](v))
+                    #     else:
+                    #         converted_args.append(v)
 
+                    converted_args = reconstruct_args(input_args, signature, local_ns)
                     # D. Run
                     raw_result = solver.solve(*converted_args)
                     
@@ -1298,7 +1339,7 @@ def stage6_evaluate(user_code: str, golden_suite: List[Dict[str, Any]],
             q = multiprocessing.Queue()
             p = multiprocessing.Process(
                 target=_run_user_sandboxed,
-                args=(user_code, copy.deepcopy(test_input), arg_types, q),
+                args=(user_code, copy.deepcopy(test_input), q),
             )
             p.start()
             
@@ -1325,7 +1366,13 @@ def stage6_evaluate(user_code: str, golden_suite: List[Dict[str, Any]],
                 continue
 
             # Compare Result
-            passed = check_correctness(payload, expected, evaluation_type)
+            passed = check_correctness(
+                payload,
+                expected,
+                evaluation_type,
+                signature["return_type"],
+                leetcode_ns
+            )
             if passed:
                 passed_count += 1
             

@@ -96,7 +96,7 @@ export default function HomePage() {
           <Code2 className="w-12 h-12 text-blue-400" />
         </div>
         <h1 className="text-4xl font-bold bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
-          MoRa: AI Coding Platform
+          MoRa: AI-Assisted Coding Platform
         </h1>
         <p className="text-gray-400 mt-2">Powered by Fine-Tuned LLMs</p>
       </div>
