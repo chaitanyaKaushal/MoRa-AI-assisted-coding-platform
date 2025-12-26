@@ -24,3 +24,6 @@ The system is implemented as a multi-stage, safety-first pipeline where all LLM 
 The system enforces correctness through strictly bounded retries and fail-closed healing mechanisms that treat all LLM outputs as untrusted proposals. Test generation, reference solutions, and optimizations are repeatedly validated via static checks, sandboxed execution, differential testing against a brute-force baseline, and hard timeouts. When mismatches occur, the platform performs localized program repair with strict retry limits, aborting once bounds are reached rather than guessing correctness. User-provided counterexamples can inject ground truth, but even these are constrained by the same termination guarantees. At every stage, the platform—not the LLM—decides acceptance, ensuring robustness, reproducibility, and controlled failure over illusory correctness.
 
 ## [Evaluation and Benchmarks](./Evaluation.pdf)
+* Performance Benchmarks.
+* Latency Statistics.
+* Ground-truth correctness.
