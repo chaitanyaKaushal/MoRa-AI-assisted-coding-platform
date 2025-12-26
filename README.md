@@ -8,7 +8,8 @@ This project builds an AI system that takes a vague, human-written recollection 
 
 **It is extremely useful for DSA round preparations where students often refer past-interview experiences, only to find there is no associated Leetcode/CodeForces problem available for it. Our LLM can deal with the different problem flavors and provide you a coding playground.**
 
-## [Demo](./demo.mov)
+## Demo
+https://github.com/user-attachments/assets/53585499-d828-40c2-af24-caf122d8c728
 
 ## [Design Document](./Design%20Document.pdf)
 This project presents an **AI-assisted coding practice platform** that reconstructs a complete problem-solving environment—formal specification, test suite, reference solutions, and interactive practice—from minimal or vague user input, such as how candidates recall interview problems days later. By modeling four realistic user personas (layman, conversational, technical shorthand, and implementation-specific), the system robustly translates ambiguous natural-language descriptions into precise formal specifications using a fine-tuned LLM trained on real LeetCode problems. A multi-stage pipeline then generates and validates test cases, produces brute-force and optimized reference solutions, and iteratively self-heals inconsistencies through execution-based checks and user-provided counterexamples. Rather than assuming access to ground-truth answers, the platform defines correctness operationally via consistency between independently generated solutions and tests, emphasizing reliability, transparency, and practical usability for interview preparation and coding practice.
